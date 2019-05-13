@@ -34,7 +34,6 @@ class Ui_MainWindow(object):
         self.Blur_checkBox.setObjectName("Blur_checkBox")
         self.verticalLayout.addWidget(self.Blur_checkBox)
         self.Blur_Slider = QtWidgets.QSlider(self.verticalLayoutWidget)
-        self.Blur_Slider.setEnabled(False)
         self.Blur_Slider.setMinimum(1)
         self.Blur_Slider.setMaximum(15)
         self.Blur_Slider.setOrientation(QtCore.Qt.Horizontal)
