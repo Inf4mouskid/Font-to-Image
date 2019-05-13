@@ -112,13 +112,13 @@ class PSFontWindow(QMainWindow):
 			color0 = (88, 190, 226, 255)
 			#Enable/disable the blur effect
 			if self.ui.Blur_checkBox.isChecked():
-				self.ui.Blur_Slider.isEnabled(True)
+				self.ui.Blur_Slider.setEnabled(True)
 				l0.text((wb-1,hb),z,color0,font=font)
 				l0.text((wb+1,hb),z,color0,font=font)
 				l0.text((wb,hb-1),z,color0,font=font)
 				l0.text((wb,hb+1),z,color0,font=font)
 			else:
-				self.ui.Blur_Slider.isEnabled(False)
+				self.ui.Blur_Slider.setEnabled(False)
 			layer0 = layer0.filter(ImageFilter.GaussianBlur(self.ui.Blur_Slider.value())) #add blur with new size
 
 			#layer1: stroke effect using texture
