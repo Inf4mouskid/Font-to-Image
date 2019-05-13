@@ -116,7 +116,7 @@ class PSFontWindow(QMainWindow):
 				l0.text((wb+1,hb),z,color0,font=font)
 				l0.text((wb,hb-1),z,color0,font=font)
 				l0.text((wb,hb+1),z,color0,font=font)
-			layer0 = layer0.filter(ImageFilter.GaussianBlur(8)) #add blur with new size
+			layer0 = layer0.filter(ImageFilter.GaussianBlur(10)) #add blur with new size
 
 			#layer1: stroke effect using texture
 			layer1 = Image.open(tex2) #texture
