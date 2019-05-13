@@ -3,8 +3,8 @@
 # Form implementation generated from reading ui file 'psfont.ui',
 # licensing of 'psfont.ui' applies.
 #
-# Created: Mon May 13 12:00:24 2019
-#      by: pyside2-uic  running on PySide2 5.12.3
+# Created: Mon May 13 16:12:57 2019
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,6 +14,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
+        MainWindow.resize(380, 280)
         MainWindow.statusBar().setSizeGripEnabled(False)
         MainWindow.setFixedSize(380, 280)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -34,8 +35,9 @@ class Ui_MainWindow(object):
         self.Blur_checkBox.setObjectName("Blur_checkBox")
         self.verticalLayout.addWidget(self.Blur_checkBox)
         self.Blur_Slider = QtWidgets.QSlider(self.verticalLayoutWidget)
+        self.Blur_Slider.setEnabled(False)
         self.Blur_Slider.setMinimum(1)
-        self.Blur_Slider.setMaximum(15)
+        self.Blur_Slider.setMaximum(20)
         self.Blur_Slider.setOrientation(QtCore.Qt.Horizontal)
         self.Blur_Slider.setTickPosition(QtWidgets.QSlider.TicksBothSides)
         self.Blur_Slider.setTickInterval(1)

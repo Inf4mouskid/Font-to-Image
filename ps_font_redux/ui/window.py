@@ -32,7 +32,15 @@ class PSFontWindow(QMainWindow):
 		self.ui.texture1_browse.clicked.connect(self.browse_for_tex1)
 		self.ui.texture2_browse.clicked.connect(self.browse_for_tex2)
 
+		self.ui.Blur_checkBox.stateChanged.connect(self.toggle_blur_slider)
+
 		self.ui.start_button.clicked.connect(self.run)
+
+	def toggle_blur_slider(self):
+		if self.ui.Blur_checkBox.isChecked():
+			self.ui.Blur_Slider.setEnabled(True)
+		else:
+			self.ui.Blur_Slider.setEnabled(False)
 
 	def browse_for_font(self):
 		font_path, selected_filter = QFileDialog.getOpenFileName(self, "Select Font File", None, ".ttf Font files (*.ttf)")
@@ -79,8 +87,12 @@ class PSFontWindow(QMainWindow):
 
 		base = os.path.basename(path)
 		dirs = os.path.splitext(base)[0]
-		if not os.path.exists(dirs):
-			os.mkdir(dirs)
+		
+		# Put all fonts into a subfolder called "fonts"
+		if not os.path.exists("fonts"):
+			os.mkdir("fonts")
+		if not os.path.exists("fonts/"+dirs):
+			os.mkdir("fonts/"+dirs)
 		chars = self.load_font(path)
 		font = ImageFont.truetype(path,fontsize)
 
@@ -108,15 +120,16 @@ class PSFontWindow(QMainWindow):
 			#bglayer: blurred font
 			layer0 = Image.new('RGBA', (w,h), transparent)
 			l0 = ImageDraw.Draw(layer0)
-			#drawing char 4 times different positions to get bigger blur effect
-			color0 = (88, 190, 226, 255)
+			
 			#Enable/disable the blur effect
 			if self.ui.Blur_checkBox.isChecked():
+				color0 = (88, 190, 226, 255)
+				#drawing char 4 times different positions to get bigger blur effect
 				l0.text((wb-1,hb),z,color0,font=font)
 				l0.text((wb+1,hb),z,color0,font=font)
 				l0.text((wb,hb-1),z,color0,font=font)
 				l0.text((wb,hb+1),z,color0,font=font)
-			layer0 = layer0.filter(ImageFilter.GaussianBlur(self.ui.Blur_Slider.value())) #add blur with new size
+				layer0 = layer0.filter(ImageFilter.GaussianBlur(self.ui.Blur_Slider.value())) #add blur with new size
 
 			#layer1: stroke effect using texture
 			layer1 = Image.open(tex2) #texture
@@ -150,7 +163,7 @@ class PSFontWindow(QMainWindow):
 			bb = i.getbbox()
 			if bb is not None:
 				i = i.crop((bb[0]-left,0,bb[2]+right,150))
-			i.save("%s/%d.png"%(dirs,c[0]))
+			i.save("fonts/%s/%d.png"%(dirs,c[0]))
 			print(z, end='', flush=True)
 			self.completed += 1
 			self.progress_dialog.setValue(self.completed)

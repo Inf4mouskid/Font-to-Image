@@ -48,6 +48,9 @@
      </item>
      <item>
       <widget class="QSlider" name="Blur_Slider">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimum">
         <number>1</number>
        </property>
