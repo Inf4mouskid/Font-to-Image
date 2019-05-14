@@ -105,7 +105,7 @@ class PSFontWindow(QMainWindow):
 			if c[0] == 32: #space character
 				sw,sh = font.getsize(chr(c[0]))
 				space = Image.new("RGBA", (sw,sh),(0,0,0,0))
-				space.save("%s/%d.png"%(dirs,c[0]))
+				space.save("fonts/%s/%d.png"%(dirs,c[0]))
 				self.completed += 1
 				continue
 			
