@@ -43,7 +43,7 @@ class PSFontWindow(QMainWindow):
 			self.ui.Blur_Slider.setEnabled(False)
 
 	def browse_for_font(self):
-		font_path, selected_filter = QFileDialog.getOpenFileName(self, "Select Font File", None, ".ttf Font files (*.ttf)")
+		font_path, selected_filter = QFileDialog.getOpenFileName(self, "Select Font File", None, ".ttf/.otf Font files (*.ttf *.otf)")
 		if not font_path:
 			return
 		self.ui.font_path.setText(font_path)
