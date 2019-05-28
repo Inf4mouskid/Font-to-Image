@@ -63,7 +63,22 @@ class PSFontWindow(QMainWindow):
 	def run(self):
 		max_val = len(self.load_font(self.ui.font_path.text()))
 		self.progress_dialog = FontProgressDialog("Generating font images...", "Generating...", max_val)
-		self.convert_ttf(self.ui.font_path.text(), self.ui.texture1_path.text(), self.ui.texture2_path.text())
+
+		tex1 = self.ui.texture1_path.text()
+		tex2 = self.ui.texture2_path.text()
+
+		if getattr(sys, 'frozen', False):
+			if not os.path.isfile(tex1):
+				tex1 = os.path.join(sys._MEIPASS, 'default.png')
+			if not os.path.isfile(tex2):
+				tex2 = os.path.join(sys._MEIPASS, 'outline.png')
+		else:
+			if not os.path.isfile(tex1):
+				tex1 = 'default.png'
+			if not os.path.isfile(tex2):
+				tex2 = 'outline.png'
+
+		self.convert_ttf(self.ui.font_path.text(), tex1, tex2)
 		self.progress_dialog.reset()
 
 	def load_font(self, path):
@@ -134,6 +149,7 @@ class PSFontWindow(QMainWindow):
 			#layer1: stroke effect using texture
 			layer1 = Image.open(tex2) #texture
 			layer1 = layer1.convert('RGBA')
+			layer1 = layer1.resize((w, h), PIL.Image.ANTIALIAS)
 			layer1_mask = Image.new('RGBA', (w,h), (0,0,0,255)) #mask layer 
 			l1 = ImageDraw.Draw(layer1_mask)
 			color1 = (0,0,0,0)
@@ -148,6 +164,7 @@ class PSFontWindow(QMainWindow):
 			#layer2: font layer with texture
 			layer2 = Image.open(tex1) #texture
 			layer2 = layer2.convert('RGBA')
+			layer2 = layer2.resize((w, h), PIL.Image.ANTIALIAS)
 			layer2_mask = Image.new('RGBA', (w,h), (0,0,0,255)) #mask layer
 			l2 = ImageDraw.Draw(layer2_mask)
 			# cutting mask layer

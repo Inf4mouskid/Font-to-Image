@@ -22,7 +22,10 @@ def build_datas_recursive(paths):
 a = Analysis(['psfont.py'],
              pathex=[],
              binaries=[],
-             datas=build_datas_recursive([]),
+             datas=build_datas_recursive([
+              'default.png',
+              'outline.png',
+             ]),
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
