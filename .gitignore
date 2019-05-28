@@ -10,3 +10,6 @@ ps_font_redux/build/psfont/Analysis-00.toc
 *.pkg
 *.pyz
 *.pyc
+*.toc
+*.zip
+*.pkg
