@@ -1,7 +1,7 @@
 *.exe
 __pycache__
-/build
-/dist
+ps_font_redux/build
+ps_font_redux/dist
 /fonts
 ps_font_redux/ui/__pycache__/window.cpython-36.pyc
 ps_font_redux/build/psfont/Analysis-00.toc
