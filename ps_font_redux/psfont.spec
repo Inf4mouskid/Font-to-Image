@@ -25,6 +25,7 @@ a = Analysis(['psfont.py'],
              datas=build_datas_recursive([
               'default.png',
               'outline.png',
+              'icon.ico',
              ]),
              hiddenimports=[],
              hookspath=[],
@@ -45,4 +46,5 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=False, )
+          console=False,
+          icon="icon.ico" )

@@ -25,6 +25,12 @@ class PSFontWindow(QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 
+		if getattr(sys, 'frozen', False):
+			icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+		else:
+			icon_path = 'icon.ico'
+		self.setWindowIcon(QIcon(icon_path))
+
 		self.setWindowTitle("Font2Image")
 		self.show()
 
