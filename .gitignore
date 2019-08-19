@@ -11,3 +11,9 @@ ps_font_redux/dist
 *.toc
 *.zip
 *.pkg
+*.toc
+*.toc
+*.zip
+*.pkg
+*.pyz
+ps_font_redux/build/psfont/warn-psfont.txt
